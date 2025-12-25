@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI vs Human Makale Tespiti</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>AI / Human Makale Tespiti</h1>
+
+  <form method="post">
+    {% if warning %}
+        <div class="warning">
+            {{ warning }}
+        </div>
+    {% endif %}
+
+    <textarea name="text" placeholder="Makale metnini buraya gir..."></textarea>
+    <button type="submit">Makaleyi Test Et</button>
+</form>
+
+
+
+    {% if results %}
+        <div class="results">
+            <h2>Model Sonuçları</h2>
+
+            {% for model, score in results.items() %}
+                <div class="model-card">
+                    <h3>{{ model }}</h3>
+                    <div class="score">
+                        <div class="human">Human: %{{ score.human }}</div>
+                        <div class="ai">AI: %{{ score.ai }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        Makine Öğrenme Temelli Makale Ai Tespiti
+    </div>
+</div>
+
+</body>
+</html>
